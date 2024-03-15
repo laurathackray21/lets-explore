@@ -1,6 +1,10 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Alert, Button, Image, StyleSheet, Text, View } from 'react-native';
+import { RootStackParamList } from '../App';
 
-export default function HomeScreen() {
+type Props = NativeStackScreenProps<RootStackParamList, 'Home', 'MyStack'>;
+
+export const HomeScreen = ({navigation}: Props) => {
 
   function addAWalk() {
     Alert.alert('Add a walk!')
@@ -10,7 +14,7 @@ export default function HomeScreen() {
   <View style={styles.container}>
     <Text style={styles.title}>Let's Explore!</Text>    
     <Image style={styles.image} source={require('../assets/hiking.jpg')}/>
-    <Button title="Add a walk" onPress={addAWalk}></Button>
+    <Button title="Add a walk" onPress={() => navigation.navigate('AddWalk')}></Button>
   </View>)
 }
 
@@ -22,7 +26,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    paddingTop: 20,
+    paddingTop: 60,
     left: 0,
     right: 0,
     position: 'absolute',
@@ -34,7 +38,7 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    flex: 1,
+    flex: 1, 
     width: 400, 
     height: 400
   } 
